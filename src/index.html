@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>3D Map WebApp</title>
+</head>
+<body>
+  <div class="upperBox">
+    <div class="univList"></div>
+    <div id="cesiumContainer"></div>
+  </div>
+  <div class="lowerBox minimize">
+    <div class="LMSContainer">
+      <button type="button" onclick="toggleBox();">back to the world</button>
+      <h1>000 Univ LMS</h1>
+      <br>
+      <h1>Welcome!</h1>
+      your subscribe duration : remaining 1M 1D 1min
+      <br>
+      --NOTICE--<br>
+      notice!notice!notice!notice!notice!notice!notice!notice!notice!notice!<br>
+      notice!notice!notice!notice!notice!notice!notice!notice!notice!notice!<br>
+      notice!notice!notice!notice!notice!notice!notice!notice!notice!notice!<br>
+      <div class="List">
+        <div class="item">
+          <div class="lecture">
+            <iframe width="200" height="200" src="https://www.youtube.com/embed/BDqvzFY72mg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="description">
+            <strong>Introduction to Power and Politics in Today’s World</strong><br>
+            play time : 56:14<br>
+            <strong>Abstraction</strong><br>
+            Professor Ian Shapiro introduces the class “Power and Politics in Today’s World.”<br>
+            This course provides an examination of political dynamics and institutions over this past tumultuous quarter century,<br>
+            and the implications of these changes for what comes next.<br>
+            Among the topics covered are the decline of trade unions and enlarged role of business as political forces,<br>
+            changing attitudes towards parties and other political institutions amidst the growth of inequality and middle-class insecurity,<br>
+            the emergence of new forms of authoritarianism, and the character and durability of the unipolar international order that replaced the Cold War.
+          </div>
+          <div class="lectureControl">
+            <button type="button">Join lecture</button>
+            <button type="button">comment</button>
+            <button type="button">I like this lecture</button>
+            <button type="button">Q & A</button>
+            <strong>view : 1234567</strong>
+          </div>
+        </div>
+        <div class="item">
+          <div class="lecture">
+            <iframe width="200" height="200" src="https://www.youtube.com/embed/kBdfcR-8hEY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="description">
+            <strong>Justice: What's The Right Thing To Do?</strong><br>
+            play time : 54:56<br>
+            <strong>Abstraction</strong><br>
+            PART ONE: THE MORAL SIDE OF MURDER<br>
+            If you had to choose between <br>
+            (1) killing one person to save the lives of five others and <br>
+            (2) doing nothing even though you knew that five people would die right before your eyes if you did nothing—what would you do?  <br>
+            What would be the right thing to do?  <br>
+            Thats the hypothetical scenario Professor Michael Sandel uses to launch his course on moral reasoning.  <br>
+            After the majority of students votes for killing the one person in order to save the lives of five others, <br>
+            Sandel presents three similar moral conundrums—each one artfully designed to make the decision more difficult.  <br>
+            As students stand up to defend their conflicting choices, <br>
+            it becomes clear that the assumptions behind our moral reasoning are often contradictory, <br>
+            and the question of what is right and what is wrong is not always black and white. 
+          </div>
+          <div class="lectureControl">
+            <button type="button">Join lecture</button>
+            <button type="button">comment</button>
+            <button type="button">I like this lecture</button>
+            <button type="button">Q & A</button>
+            <strong>view : 1234567</strong>
+          </div>
+        </div>
+        <div class="item">
+          <div class="lecture">
+            <iframe width="200" height="200" src="https://www.youtube.com/embed/6_-jtyhAVTc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="description">
+            <strong>Carl Sagan's 1994 "Lost" Lecture: The Age of Exploration</strong><br>
+            play time : 1:36:00<br>
+            <strong>Abstraction</strong><br>
+            Carl Sagan's 1994 "Lost" Lecture: The Age of Exploration
+          </div>
+          <div class="lectureControl">
+            <button type="button">Join lecture</button>
+            <button type="button">comment</button>
+            <button type="button">I like this lecture</button>
+            <button type="button">Q & A</button>
+            <strong>view : 1234567</strong>
+          </div>
+        </div>
+      </div>
+      <div class="more">
+        <a href="https://www.youtube.com/results?search_query=lecture" target="_blank">more lectures</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="readme">
+    <H1>--------README---------</H1>
+    <strong>포트폴리오로 제작된 WebApp으로 이런 경우가 가능하다는 것을 보여드리는 것입니다</strong><br>
+    1.지도 안에서 서울을 확대하면 마커가 표시 됩니다.<br>
+    2.마커들이 클러스터링이 되어 표시되어 효율적으로 데이터를 표현합니다<br>
+    3.마커를 클릭하면 창이 하나 열립니다<br>
+    4.more detail을 클릭하면 LMS에 접속되는 컨셉입니다<br>
+    5.이 포트폴리오의 주된 목적은 3d 지도에 초점을 맞추므로 LMS자체에는 집중하지 말아주세요<br>
+  </div>
+
+  <!--
+      Bootstrap modal
+  -->
+  <div id='LMSInfoBox' class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">LMS 접속</h5>
+          </div>
+          <div class="modal-body">
+              <input type="hidden" id="stationLng" name="stationLng" value="">
+              <input type="hidden" id="stationLat" name="stationLat" value="">
+              <strong><p id="stationName">ㅇㅇㅇ 대학교 LMS 에 접속되었습니다.</p></strong>
+              <p>LMS에서 제공되는 서비스 : 아래 정보는 예시입니다</p>
+              <button type="button">Subscribe</button>
+              <div id="busList">
+                  <span class="badge badge-pill badge-danger">    </span>1300
+                  <span class="badge badge-pill badge-danger">    </span>1301
+                  <span class="badge badge-pill badge-danger">    </span>1302</br>
+                  <span class="badge badge-pill badge-primary">    </span>606
+                  <span class="badge badge-pill badge-primary">    </span>661</br>
+                  <span class="badge badge-pill badge-success">    </span>6615
+                  <span class="badge badge-pill badge-success">    </span>6613
+                  <span class="badge badge-pill badge-success">    </span>6616
+                  <span class="badge badge-pill badge-success">    </span>6716
+                  <span class="badge badge-pill badge-success">    </span>5626</br>
+              </div>
+              <button type="button" data-dismiss="modal" onclick="toggleBox();">more detail...</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        //var app = undefined;
+        window.onload = function() {
+          window.app = new App();
+          window.state = "upper";
+          $('.lowerBox').css({'display' : 'none'});
+          $('.univList').treeview({
+            data:
+            [
+              {
+                text: "Korea",
+                nodes: [
+                  {
+                    text: "Univ1",
+                  },
+                  {
+                    text: "Univ2"
+                  },
+                  {
+                    text: "Univ3"
+                  },
+                  {
+                    text: "Univ4"
+                  },
+                  {
+                    text: "Univ5"
+                  },
+                  {
+                    text: "Univ6"
+                  },
+                  {
+                    text: "Univ7"
+                  },
+                  {
+                    text: "Univ8"
+                  },
+                  {
+                    text: "Univ9"
+                  }
+                ]
+              },
+              {
+                text: "Other nation",
+                state: {
+                  expanded: false,
+                },
+                nodes: [
+                  {
+                    text: "Univ1",
+                  },
+                  {
+                    text: "Univ2"
+                  },
+                  {
+                    text: "Univ3"
+                  },
+                  {
+                    text: "Univ4"
+                  },
+                  {
+                    text: "Univ5"
+                  },
+                  {
+                    text: "Univ6"
+                  },
+                  {
+                    text: "Univ7"
+                  },
+                  {
+                    text: "Univ8"
+                  },
+                  {
+                    text: "Univ9"
+                  }
+                ]
+              }
+            ]
+          });
+          $('.univList').on('nodeSelected', function(event, data) {
+            //alert(data.text);
+            //data.state.expanded = (data.state.expanded) ? false : true; 
+            $('.univList').treeview('toggleNodeExpanded', [ data.nodeId, { silent: true } ]);
+          });
+        };
+        function toggleBox(){
+          state = (state == "upper") ? "lower" : "upper";
+
+          if(state == "upper"){
+            $(".lowerBox").animate({
+              height: 0
+            },500);
+            $(".upperBox").removeClass("minimize");
+            $(".lowerBox").addClass("minimize");
+            $(".upperBox").animate({
+              height: 600
+            },500);
+            setTimeout(()=>{
+              $('.lowerBox').css({'display' : 'none'});
+            }, 500);
+          }
+          else{
+            $(".upperBox").animate({
+              height: 0
+            },500);
+            $(".upperBox").addClass("minimize");
+            $(".lowerBox").removeClass("minimize");
+            $('.lowerBox').css({'display' : 'block'});
+            $(".lowerBox").animate({
+              height: '100%'
+            },500);
+          }
+        }
+    </script>
+</body>
+</html>

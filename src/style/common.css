@@ -1,0 +1,25 @@
+.upperBox{
+    display:flex;
+    overflow-y: hidden;
+    flex-direction: row;
+    height: 600px;
+}
+.lowerBox{
+    overflow-y: hidden;
+}
+#cesiumContainer{
+    height: 600px;
+    width: 100%;
+}
+.univList{
+    width: 250px;
+    overflow-y: scroll;
+}
+.minimize{
+    height:0px;
+}
+.readme{
+    text-align: center;
+    border-top: 3px solid black;
+    margin-top:50px;
+}
